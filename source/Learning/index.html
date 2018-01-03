@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>page layout</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+    /* for block of numbers */
+    td.hljs-ln-numbers {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+
+      text-align: center;
+      color: #ccc;
+      border-right: 1px solid #CCC;
+      vertical-align: top;
+      padding-right: 5px;
+
+      /* your custom style here */
+    }
+
+    /* for block of code */
+    td.hljs-ln-code {
+      padding-left: 10px;
+    }
+
+    td.hljs-ln-code > div.hljs-ln-line {
+      padding-left: 10px;
+    }
+
+    td.hljs-ln-numbers > div.hljs-ln-line {
+      padding-right: 5px;
+    }
+    </style>
+    <script src="js/highlight.pack.js"></script>
+    <script src="js/highlightjs-line-numbers.min.js"></script>
+    <script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+    </script>
+  </head>
+  <body>
+    <header class="bg-dark">
+      <div class="container">
+        <p class="text-white"><span class="color-red">W</span>eb Learning By <span class="color-red">K</span>a2</p>
+      </div>
+    </header>
+    <article class="container">
+      <div class="row">
+        <div class="col-sm-10">
+          <section>
+            <h1 class="lead lead-red">HTML</h1>
+            <p><dfn>HyperText Markup Language</dfn>の略</p>
+            <p>つまり、ハイパーなテキストをマークアップするための言語なんです。じゃあ、ハイパーなテキストって？って話になるわけです。そこは、簡単に言うと文書と文書を関連付ける仕組みってことです。それでテキストを超えるってことでハイパーテキストってことにしといてください。aタグのリンクのことをハイパーリンクっていいますよね？</p>
+
+            <p><strong>HTML5までの道のり</strong></p>
+            <ul>
+              <li>HTML1.0、HTML+</li>
+              <li>HTML2.0</li>
+              <li>HTML3.0、HTML3.2</li>
+              <li>HTML4.0、HTML4.1</li>
+              <li>ISO/IEC 15445:2000</li>
+            </ul>
+            <p>XHTMLはってなるかもなので、一応HTML4.0をもとにしてXMLの文法で定義したものです。ざっくりすぎかもですけど（Extensible HyperText Markup Language）</p>
+            <ul>
+                <li>XHTML1.0</li>
+                <li>XHTML Basic</li>
+                <li>XHTML Modularization (Modularization of XHTML, M12n)</li>
+                <li>XHTML1.1</li>
+                <li>XHTML1.2</li>
+                <li>XHTML2.0</li>
+                <li>XHTML5</li>
+            </ul>
+            <p>って流れで変わってきたんですね。。。結構XHTML1.0、1.1とかは使った人が多いかもですね。</p>
+          </section>
+          <section>
+            <h2 class="lead lead-red">HTML5の最近・・</h2>
+            <blockquote class="border">
+              <p>HTML5はWeb Hypertext Application Technology Working Groupによって2004年に定められたWeb Applications 1.0にWeb Forms 2.0を取り入れたものがWorld Wide Web Consortiumの専門委員会に採用され、World Wide Web Consortiumより2008年1月22日にドラフト（草案）が発表され、2014年10月28日に HTML5 が勧告され、2016年11月1日に HTML 5.1 が勧告され、2017年12月14日に HTML 5.2 が勧告された。</p>
+              <p><cite><a href="https://ja.wikipedia.org/wiki/HTML5">wikipedia</a>より</cite></p>
+            </blockquote>
+          </section>
+          <section>
+            <h3 class="lead lead-red">HTML5の書き方</h3>
+            <pre><code class="html">
+&lt;!DOCTYPE html&gt; &lt;!-- 必須 --&gt;
+&lt;head&gt; &lt;!-- 必須 --&gt;
+&lt;title&gt;TEST&lt;/title&gt;
+&lt;/head&gt; &lt;!-- 必須 --&gt;
+&lt;body&gt; &lt;!-- 必須 --&gt;
+&lt;/body&gt; &lt;!-- 必須 --&gt;
+&lt;/html&gt; &lt;!-- 必須 --&gt;
+
+            </code></pre>
+
+          </section>
+
+
+
+
+
+            <pre><code>
+function aaa() {
+
+}
+          </code></pre>
+
+        </div>
+        <aside class="aside col-sm-2">
+          <ul class="nav flex-column">
+            <li class="nav-item"><a href="index.html">Lesson 1</a></li>
+            <li class="nav-item"><a href="index.html">Lesson 2</a></li>
+            <li class="nav-item"><a href="index.html">Lesson 3</a></li>
+            <li class="nav-item"><a href="index.html">Lesson 4</a></li>
+          </ul>
+        </aside>
+      </div>
+    </article>
+    <footer>
+      <div class="container">
+
+      </div>
+    </footer>
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/popper-1.12.9.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
