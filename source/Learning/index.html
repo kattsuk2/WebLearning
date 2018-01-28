@@ -6,38 +6,6 @@
     <title>page layout</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <style>
-    /* for block of numbers */
-    td.hljs-ln-numbers {
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -khtml-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-
-      text-align: center;
-      color: #ccc;
-      border-right: 1px solid #CCC;
-      vertical-align: top;
-      padding-right: 5px;
-
-      /* your custom style here */
-    }
-
-    /* for block of code */
-    td.hljs-ln-code {
-      padding-left: 10px;
-    }
-
-    td.hljs-ln-code > div.hljs-ln-line {
-      padding-left: 10px;
-    }
-
-    td.hljs-ln-numbers > div.hljs-ln-line {
-      padding-right: 5px;
-    }
-    </style>
     <script src="js/highlight.pack.js"></script>
     <script src="js/highlightjs-line-numbers.min.js"></script>
     <script>
@@ -89,29 +57,117 @@
           <section>
             <h3 class="lead lead-red">HTML5の書き方</h3>
             <pre><code class="html">
-&lt;!DOCTYPE html&gt; &lt;!-- 必須 --&gt;
-&lt;head&gt; &lt;!-- 必須 --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;head&gt;
 &lt;title&gt;TEST&lt;/title&gt;
-&lt;/head&gt; &lt;!-- 必須 --&gt;
-&lt;body&gt; &lt;!-- 必須 --&gt;
-&lt;/body&gt; &lt;!-- 必須 --&gt;
-&lt;/html&gt; &lt;!-- 必須 --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div&gt;
+  &lt;p&gt;コンテンツ&lt;/p&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </code></pre>
+            <p>HTMLはタグと呼ばれるマークを使って書きます。必ず開始「&lt;tag名&gt;」と終了「&lt;/tag名&gt;」で囲みます。終了タグはtag名の前に「/(スラッシュ）」を入れます。</p>
+            <p><strong>空要素</strong></p>
+            <pre><code class="html">
+&lt;br /&gt; &lt;!-- XHTMLでは空要素はtag名の後にスペースとスラッシュを使って閉じていました --&gt;
 
+&lt;br&gt; &lt;!-- HTML5ではXMLは関係ないのでいりません。書いてもエラーにはならないけど --&gt;
             </code></pre>
 
+            <p><strong>属性</strong></p>
+            <pre><code class="html">
+&lt;a href="//mdingon.com"&gt;MDON&lt;/a&gt;
+            </code></pre>
+
+            <p>タグの中に属性を指定することで動きや関連などいろいろなことを指定できる。指定できるものはタグにより異なる。</p>
+
+            <p><strong>コメント</strong></p>
+            <pre><code class="html">
+&lt;!-- コメント --&gt; &lt;!-- 一行でも複数でもこの中に書く --&gt;
+
+&lt;!-- １行目
+２行目
+３行目 --&gt;
+
+&lt;!-- １行目
+&lt;!-- ２行目 --&gt;
+３行目 --&gt; 中に入れないようにきをつけて
+            </code></pre>
+            <p>まぁ、このくらい知ってればとりあえずは何とかなります。</p>
+            <p>MDONの業務で使う分には、div、table、thead、tbody、tr、td、a、span、from関連をしっかり理解していれば特に問題ないかなと…あとは、このタグで使える属性</p>
           </section>
 
+          <h3 class="lead lead-red">CSS3</h3>
+          <p>CSS(Cascading Style Sheet）は、マークアップされたものHTML、XTHML、XML、SVGなどの文章の体裁や見栄えを表現するためのスタイルシート</p>
 
+          <p><strong>CSS書き方</strong></p>
+          <pre><code class="css">
+h1 { color: red } /* セレクタ { プロパティ: 値 } */
 
+h2 {
+  color: blue; /* 複数項目プロパティを設定するときは、セミコロンで閉める */
+  background-color: red;
+}
+h2 {color: blue; background-color: red;} /* まぁ上と一緒だけど一応ね */
 
+/* コメントは/*で始まり*/で終わる */
+/*
+h2 {
+  color: red;
+}
+*/ 複数行も同じコメントにしたい個所を囲む
+          </code></pre>
 
-            <pre><code>
-function aaa() {
+          <p><strong>CSSを書く場所</strong></p>
 
+          <p>CSSはいろんな所にかけてしまいます。HTMLのheadタグ内、bodyタグ内またはタグに直接書く、CSSファイルを作成する。といった感じで書こうと思えば簡単に書けます。</p>
+          <pre><code class="html,css">
+            HTMLファイル
+&lt;!DOCTYPE html&gt;
+&lt;head&gt;
+&lt;link rel="stylesheet" href="style.css"&gt;
+&lt;title&gt;TEST&lt;/title&gt;
+&lt;style type="text/css"&gt;
+div {
+  color: red;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;style&gt;
+div {
+  color: blue;
+}
+&lt;/style&gt;
+
+&lt;div style="color: black"&gt;
+  &lt;p&gt;コンテンツ&lt;/p&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+          </code></pre>
+
+          <pre><code class="css">
+/* style.css */
+div {
+  color: white;
 }
           </code></pre>
 
-        </div>
+          <p>上の例のようにいたるところに同じセレクタに対して書くことができます。</p>
+          <p>このように書かれた場合に最終的には、どのスタイルが適用されるのでしょう。。。</p>
+          <p>最終的には、style="color: black"とdivタグに直接書かれているものが適用されます。スタイルは基本あと勝ちです。ただし、!importantを値の後ろにつけることで強制的に聞かせることができます。しかしこれを使うとこれ以降にcolorプロパティがあっても適用できません。!importantは気を付けて使いましょう。</p>
+          <pre><code class="css">
+/* style.css */
+div {
+  color: white !important;
+}
+          </code></pre>
+
+          <p><strong>CSSの詳細度</strong></p>
+                      </div>
         <aside class="aside col-sm-2">
           <ul class="nav flex-column">
             <li class="nav-item"><a href="index.html">Lesson 1</a></li>

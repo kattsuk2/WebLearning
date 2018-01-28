@@ -25,3 +25,35 @@ header > .container > p > .color-red {
   border-left: 5px solid #dc3545;
   padding-left: 1rem;
 }
+
+/* highlighter over write */
+/* for block of numbers */
+td.hljs-ln-numbers {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  text-align: center;
+  color: #ccc;
+  border-right: 1px solid #CCC;
+  vertical-align: top;
+  padding-right: 5px;
+
+  /* your custom style here */
+}
+
+/* for block of code */
+td.hljs-ln-code {
+  padding-left: 10px;
+}
+
+td.hljs-ln-code > div.hljs-ln-line {
+  padding-left: 10px;
+}
+
+td.hljs-ln-numbers > div.hljs-ln-line {
+  padding-right: 5px;
+}
