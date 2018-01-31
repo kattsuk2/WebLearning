@@ -13,6 +13,11 @@ header > .container > p > .color-red {
   color: red;
 }
 
+footer {
+  margin-top: 10px;
+  border: 1px solid #ccc;
+}
+
 /* article.container {
   background-color: #f7f7f7;
 } */
