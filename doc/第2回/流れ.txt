@@ -1,0 +1,29 @@
+
+excelのフローを使ってある程度流れを説明
+
+
+https://celtislab.net/archives/20140527/git-sourcetree/
+
+追加
+削除
+破棄
+無視
+スタッシュ（一時退避）
+ブランチ
+コミット
+チェックアウト（切り替え）
+マージ
+フェッチ
+プル
+プッシュ
+
+この辺を全体的に説明していると時間が無くなる…けどどうしよう…
+
+
+chrome に追加
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --allow-file-access-from-files --disable-web-security
+
+
+
+
+
