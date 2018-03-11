@@ -46,18 +46,21 @@ body {
 .box2 {
   border-color: #f4d742;
   color: #f4d742;
-  width: 30%;
 }
 
 .box3 {
   border-color: #f44941;
   color: #f44941;
-  width: 70%;
 }
 
 .box4 {
   border-color: #41f485;
   color: #41f485;
+}
+
+.box5 {
+  border-color: #ee17ee;
+  color: #ee17ee;
 }
 
 p {
@@ -69,17 +72,31 @@ p {
   background-color: #f2f2f2;
 }
 
-.nav > li {
-  list-style: none;
+.width-max {
   width: 100%;
-  border: 1px solid #ddd;
+}
+
+.width-25per{
   width: 25%;
 }
 
+.width-30per {
+  width: 30%;
+}
+
+.width-70per {
+  width: 70%;
+}
+
+.nav > li {
+  list-style: none;
+  border: 1px solid #ddd;
+}
+
 .nav > li > a {
-  display: block;
-  text-decoration: none;
-  padding: 10px 15px;
+  display: inline-block;
+  height: 35px;
+  padding-top: 6px;
 }
 
 
