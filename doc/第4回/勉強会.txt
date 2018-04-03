@@ -1,0 +1,18 @@
+
+media query
+
+https://qiita.com/knml/items/c94dc493571dd4127d43
+
+
+https://sole-color-blog.com/blog/71/
+
+
+viewport
+
+https://seopack.jp/internal-seo/smartphone/responsive-web-design-viewport-media-queries.php
+
+https://developer.mozilla.org/ja/docs/Web/CSS/Reference/@viewport
+
+https://qiita.com/ryounagaoka/items/045b2808a5ed43f96607
+
+

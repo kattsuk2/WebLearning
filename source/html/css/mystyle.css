@@ -5,6 +5,10 @@ body {
   font-size:0.95em; */
 }
 
+li {
+  list-style: none;
+}
+
 .clearfix {
   *zoom: 1;
 }
@@ -90,7 +94,7 @@ p {
   width: 70%;
 }
 
-.nav > li {
+.nav li {
   list-style: none;
   border: 1px solid #ddd;
 }
