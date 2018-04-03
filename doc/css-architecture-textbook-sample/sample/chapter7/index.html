@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>第7章 サンプル</title>
+<link rel="stylesheet" href="../common/css/libs/meyer-reset.css">
+<link rel="stylesheet" href="../common/css/libs/highlight/github.css">
+<link rel="stylesheet" href="../common/css/sample.css">
+<script src="../common/js/libs/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<style>
+
+/* Utility */
+.u-mbs {
+  margin-bottom: 10px;
+}
+.u-mbm {
+  margin-bottom: 20px;
+}
+.u-mbl {
+  margin-bottom: 40px;
+}
+</style>
+<script>
+(function() {
+  var element = Object.create(HTMLElement.prototype);
+
+  // HTMLElementのprototypeを継承したオブジェクトをつくる
+  element.createdCallback = function() {
+    var template = document.querySelector('#my-alert-template');
+    // templateのDocumentFragmentからcontentを参照し取得する
+    var content = template.content;
+    // Shadow Rootにcontentを追加する
+    var shadowRoot = this.createShadowRoot();
+    shadowRoot.appendChild(
+      document.importNode(content, true)
+    );
+    
+    // message属性の値の追加先
+    this.alertTitle = shadowRoot.getElementById('alertTitle');
+    
+    // message属性があれば、タイトル部分に追加する
+    if (this.hasAttribute('message')) {
+      var message = this.getAttribute('message');
+      this.setTitle(message);
+    }
+  };
+
+  // 取得した値（テキスト）を要素に追加するメソッド
+  element.setTitle = function(val) {
+    this.message = val;
+    this.alertTitle.textContent = this.message;
+  };
+  
+  // my-alertをつくり、継承させる
+  document.registerElement('my-alert', {
+      prototype: element
+  });
+}());
+</script>
+</head>
+<body>
+
+<h1 class="page-title">第7章 サンプル</h1>
+
+<p class="description">
+  このサンプルは、第7章で解説するWeb Componentsの実装例として上げているコードを元に作られています。<br>
+  記載のコードは、最終的な形になったものを記載しています。ブラウザのバージョンによっては確認できない場合があるので、最新バージョンのGoogle Chromeで確認してみてください。（バージョン36.0.1985.125では動作確認済みです）
+</p>
+
+<div class="sample" id="button">
+<h2 class="sample__heading">alertのサンプル</h2>
+<div class="sample__result" style="padding: 1em 2em;">
+
+<my-alert message="ようこそサンプルページへ！"></my-alert>
+
+<my-alert message="登録が完了しました！" success>
+  <p>登録完了メールをお送りしましたのでご確認ください。</p>
+</my-alert>
+
+<my-alert message="未入力項目があります。" error>
+  <ul>
+    <li>氏名を入力してください。</li>
+    <li>メールアドレスを入力してください。</li>
+  </ul>
+</my-alert>
+
+<template id="my-alert-template">
+<style>
+:host {
+  display: block;
+  position: relative;
+  border-radius: 6px;
+  border: 1px solid #DDDDDD;
+  background-color: #EFEFEF;
+  margin-bottom: 1em;
+  padding: 0.6em 0.8em;
+}
+:host([warning]) {
+  border-color: #faebcc;
+  background-color: #fcf8e3;
+}
+:host([error]) {
+  border-color: #ebccd1;
+  background-color: #f2dede;
+}
+:host([success]) {
+  border-color: #d6e9c6;
+  background-color: #dff0d8;
+}
+  
+::content * {
+  margin:0;
+  padding:0;
+}
+::content p,
+::content li {
+  margin-top: 0.6em;
+}
+::content ul {
+  margin-left: 1.2em;
+  list-style: disc;
+}
+  
+[id="alertTitle"] {
+  margin:0;
+  padding:0;
+  font-weight: bold;
+}
+</style>
+  
+<p id="alertTitle"></p>
+<content></content>
+  
+</template>
+
+</div>
+<div class="sample__markup">
+<h2 class="sample__heading">HTML</h2>
+<pre class="sample__code"><code class="html">&lt;!-- カスタム要素 &lt;my-alert&gt; --&gt;
+&lt;my-alert message=&quot;ようこそサンプルページへ！&quot;&gt;&lt;/my-alert&gt;
+
+&lt;my-alert message=&quot;登録が完了しました！&quot; success&gt;
+  &lt;p&gt;登録完了メールをお送りしましたのでご確認ください。&lt;/p&gt;
+&lt;/my-alert&gt;
+
+&lt;my-alert message=&quot;未入力項目があります。&quot; error&gt;
+  &lt;ul&gt;
+    &lt;li&gt;氏名を入力してください。&lt;/li&gt;
+    &lt;li&gt;メールアドレスを入力してください。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/my-alert&gt;
+
+&lt;!-- &lt;my-alert&gt;に隠されたDOMとスタイル --&gt;
+&lt;template id=&quot;my-alert-template&quot;&gt;
+&lt;style&gt;
+/* &lt;my-alert&gt;要素（タグ）に対するスタイリング */
+:host {
+  display: block;
+  position: relative;
+  border-radius: 6px;
+  border: 1px solid #DDDDDD;
+  background-color: #EFEFEF;
+  margin-bottom: 1em;
+  padding: 0.6em 0.8em;
+}
+:host([warning]) {
+  border-color: #faebcc;
+  background-color: #fcf8e3;
+}
+:host([error]) {
+  border-color: #ebccd1;
+  background-color: #f2dede;
+}
+:host([success]) {
+  border-color: #d6e9c6;
+  background-color: #dff0d8;
+}
+
+/* &lt;my-alert&gt;要素（タグ）の中の要素に対するスタイリング */
+::content * {
+  margin:0;
+  padding:0;
+}
+::content p,
+::content li {
+  margin-top: 0.6em;
+}
+::content ul {
+  margin-left: 1.2em;
+  list-style: disc;
+}
+  
+[id=&quot;alertTitle&quot;] {
+  margin:0;
+  padding:0;
+  font-weight: bold;
+}
+&lt;/style&gt;
+  
+&lt;p id=&quot;alertTitle&quot;&gt;&lt;/p&gt;
+&lt;!-- &lt;content&gt;&lt;/content&gt;に&lt;my-alert;&gt;&lt;/my-alert&gt;の中の要素が挿入される --&gt;
+&lt;content&gt;&lt;/content&gt;
+  
+&lt;/template&gt;</code></pre>
+</div>
+<div class="sample__css">
+<h2 class="sample__heading">CSS</h2>
+<pre class="sample__code"><code class="javascript">(function() {
+  var element = Object.create(HTMLElement.prototype);
+
+  // HTMLElementのprototypeを継承したオブジェクトをつくる
+  element.createdCallback = function() {
+    var template = document.querySelector(&#039;#my-alert-template&#039;);
+    // templateのDocumentFragmentからcontentを参照し取得する
+    var content = template.content;
+    // Shadow Rootにcontentを追加する
+    var shadowRoot = this.createShadowRoot();
+    shadowRoot.appendChild(
+      document.importNode(content, true)
+    );
+    
+    // message属性の値の追加先
+    this.alertTitle = shadowRoot.getElementById(&#039;alertTitle&#039;);
+    
+    // message属性があれば、タイトル部分に追加する
+    if (this.hasAttribute(&#039;message&#039;)) {
+      var message = this.getAttribute(&#039;message&#039;);
+      this.setTitle(message);
+    }
+  };
+
+  // 取得した値（テキスト）を要素に追加するメソッド
+  element.setTitle = function(val) {
+    this.message = val;
+    this.alertTitle.textContent = this.message;
+  };
+  
+  // my-alertをつくり、継承させる
+  document.registerElement(&#039;my-alert&#039;, {
+      prototype: element
+  });
+}());</code></pre>
+</div>
+</div>
+
+
+</body>
+</html>
