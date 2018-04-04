@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>第4章 サンプル</title>
+<link rel="stylesheet" href="../common/css/libs/meyer-reset.css">
+<link rel="stylesheet" href="../common/css/libs/highlight/github.css">
+<link rel="stylesheet" href="../common/css/sample.css">
+<script src="../common/js/libs/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<style>
+/*
+# Button
+*/
+.btn {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: inline-block;
+  box-sizing: border-box;
+  border: 1px solid #000;
+  margin: 0;
+  padding: 0.3em 1em;
+  text-align: center;
+  line-height: 1;
+  background: #EEE;
+  text-decoration: none;
+  font-size: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* 幅を割り当てるModifier */
+.btn--short {
+  width: 200px;
+}
+.btn--long {
+  width: 480px;
+}
+.btn--full {
+  width: 100%;
+}
+
+/*
+# Icon
+*/
+
+/* CSSスプライトによるアイコン */
+.icn {
+  display: inline-block;
+  background-image: url(spritesheets.png);
+}
+.icn--edit {
+  width: 16px;
+  height: 16px;
+  background-position: 0 0;
+}
+.icn--delete {
+  width: 16px;
+  height: 16px;
+  background-position: -20px 0;
+}
+.icn--nav-home {
+  width: 32px;
+  height: 32px;
+  background-position: 0 -20px;
+}
+
+/* アイコンフォントによるアイコン */
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('http://weloveiconfonts.com/api/fonts/fontawesome/fontawesome-webfont.eot');
+  src: url('http://weloveiconfonts.com/api/fonts/fontawesome/fontawesome-webfont.eot?#iefix') format('eot'), 
+       url('http://weloveiconfonts.com/api/fonts/fontawesome/fontawesome-webfont.woff') format('woff'), 
+       url('http://weloveiconfonts.com/api/fonts/fontawesome/fontawesome-webfont.ttf') format('truetype'), 
+       url('http://weloveiconfonts.com/api/fonts/fontawesome/fontawesome-webfont.svg#FontAwesomeRegular') format('svg');
+}
+.font-icon:before {
+  line-height: 1;
+  font-family: 'FontAwesome', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-icon--edit:before {
+  content: "\f044"; /* 編集 */
+}
+.font-icon--delete:before {
+  content: "\f014"; /* 削除 */
+}
+.font-icon--home:before {
+  content: "\f015"; /* ホーム */
+}
+
+.font-icon--large {
+  font-size: 32px;
+}
+
+/*
+# Heading
+*/
+.heading {
+  position: relative;
+  border: 1px solid #000;
+  margin-bottom: 0.5em;
+  line-height: 42px;
+  padding: 0 0.6em;
+  font-size: 20px;
+  font-weight: bold;
+}
+.heading__link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 1em;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+/*
+# Media
+*/
+.media:before,
+.media:after {
+  display: table; /* 子要素でfloatを使うため、Clearfixをする */
+  content: " "; /* 子要素でfloatを使うため、Clearfixをする */
+}
+
+.media:after {
+  clear: both; /* 子要素でfloatを使うため、Clearfixをする */
+}
+
+.media__image {
+  float: left;
+  margin-right: 10px; /* 任意の値 */
+}
+.media__image--rev { /* Reverse */
+  float: right;
+  margin-right: 0;
+  margin-left: 10px;
+}
+
+.media__image > img {
+  display: block;
+}
+
+.media__body {
+  overflow: hidden; /* 画像下にテキストが周り込むのを防ぐ */
+}
+
+/*
+# Navigation
+*/
+.nav {
+  display: table;
+  width: 100%;
+  table-layout: fixed; /* 子要素の`table-cell`の幅を均等にする */
+}
+.nav__item {
+  display: table-cell;
+}
+.nav__item > a {
+  display: block;
+  padding: 20px 0;
+  text-align: center;
+  text-decoration: none;
+  background-color: #3B8;
+  font-weight: bold;
+  color: #FFF;
+}
+.nav__item > a:hover {
+  background-color: #5C8;
+}
+
+/*
+# List
+*/
+.tableview {
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid #999;
+}
+.tableview__item {
+  padding: 1em;
+  background-color: #DDD;
+}
+.tableview__item + .tableview__item {
+  border-top: 1px solid #666;
+}
+.tableview__target {
+  position: relative; /* 矢印の配置の基点にする */
+  padding-right: 2.4em; /* 矢印分の余白を空ける */
+  display: block; /* インラインからブロックに変える */
+  margin: -1em; /* paddingでふくらむ分を相殺する */
+  padding: 1em; /* 必要な余白を取る */
+  text-decoration: none; /* `<a>`のデフォルトスタイルを消す */
+  background-color: #DDF;
+  color: inherit;
+}
+.tableview__target:hover {
+  background-color: #E3E3FF;
+}
+.tableview__target-icon {
+  position: absolute;
+  top: 0; /* topとbottom、対するプロパティに値を持たせて、領域をつくる */
+  bottom: 0; /* topとbottom、対するプロパティに値を持たせる、領域をつくる */
+  right: 0.6em; /* アイコンが右端いっぱいに配置されないようにする */
+  margin: auto; /* 垂直に中央になるようにする */
+}
+
+.ico {
+  display: inline-block;
+  background-image: url(spritesheets.png);
+}
+.ico--arrow {
+  width: 16px;
+  height: 16px;
+  background-position: -40px 0;
+}
+
+/*
+# Grid
+*/
+.grid:before,
+.grid:after {
+  display: table; /* 子要素でfloatを使うため、Clearfixをする */
+  content: " "; /* 子要素でfloatを使うため、Clearfixをする */
+}
+.grid:after {
+  clear: both; /* 子要素でfloatを使うため、Clearfixをする */
+}
+
+.grid--fill {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+.grid__item {
+  float: left;
+  box-sizing: border-box; /* border-widthとpaddingをwidthに含める */
+  width: 16.667%;
+}
+.grid__item > div {
+  padding: 0.5em 1em;
+  background-color: rgba(44,88,99,0.5);
+  text-align: center;
+  font-weight: bold;
+  color: #FFF;
+}
+.grid__item--1 {
+  width: 8.333%;
+}
+.grid__item--2 {
+  width: 16.667%;
+}
+.grid__item--3 {
+  width: 25%;
+}
+.grid__item--4 {
+  width: 33.333%;
+}
+.grid__item--5 {
+  width: 41.666%;
+}
+.grid__item--6 {
+  width: 50%;
+}
+.grid__item--7 {
+  width: 58.333%;
+}
+.grid__item--8 {
+  width: 66.666%;
+}
+.grid__item--9 {
+  width: 75%;
+}
+.grid__item--10 {
+  width: 83.33%;
+}
+.grid__item--11 {
+  width: 91.666%;
+}
+.grid__item--12 {
+  width: 100%;
+}
+/* `.grid__item`に持たせる */
+.has-gutter {
+  padding-left: 5px;
+  padding-right: 5px;  
+}
+
+/* Utility */
+.u-mbs {
+  margin-bottom: 10px;
+}
+.u-mbm {
+  margin-bottom: 20px;
+}
+.u-mbl {
+  margin-bottom: 40px;
+}
+</style>
+</head>
+<body>
+
+<h1 class="page-title">第4章 サンプル</h1>
+
+<p class="description">
+  このサンプルは、第4章で解説するコンポーネント設計とその実践例として上げているコードを元に作られています。<br>
+  またサンプルはすべて<a href="http://meyerweb.com/eric/tools/css/reset/" target="_blank">エリック・メイヤー氏のreset.css</a>によって要素のスタイルを初期化しています。
+</p>
+
+<ul class="nav u-mbm">
+  <li class="nav__item"><a href="#button">ボタン</a></li>
+  <li class="nav__item"><a href="#icon">アイコン</a></li>
+  <li class="nav__item"><a href="#heading">見出し</a></li>
+  <li class="nav__item"><a href="#media">メディア</a></li>
+  <li class="nav__item"><a href="#navigation">ナビゲーション</a></li>
+  <li class="nav__item"><a href="#list">リスト</a></li>
+  <li class="nav__item"><a href="#grid">グリッド</a></li>
+</ul>
+
+<div class="sample" id="button">
+<h2 class="sample__heading">ボタンのサンプル</h2>
+<div class="sample__result">
+<div>
+  <a class="btn">ボタン</a>
+</div>
+<div>
+  <a class="btn btn--short">ボタン</a>
+</div>
+<div>
+  <a class="btn btn--long">ボタン</a>
+</div>
+<div>
+  <a class="btn btn--full">ボタン</a>
+</div>
+
+</div>
+<div class="sample__markup">
+<h2 class="sample__heading">HTML</h2>
+<pre class="sample__code"><code class="html">&lt;div&gt;
+  &lt;a class=&quot;btn&quot;&gt;ボタン&lt;/a&gt;
+&lt;/div&gt;
+&lt;div&gt;
+  &lt;a class=&quot;btn btn--short&quot;&gt;ボタン&lt;/a&gt;
+&lt;/div&gt;
+&lt;div&gt;
+  &lt;a class=&quot;btn btn--long&quot;&gt;ボタン&lt;/a&gt;
+&lt;/div&gt;
+&lt;div&gt;
+  &lt;a class=&quot;btn btn--full&quot;&gt;ボタン&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="sample__css">
+<h2 class="sample__heading">CSS</h2>
+<pre class="sample__code"><code class="css">.btn {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: inline-block;
+  box-sizing: border-box;
+  border: 1px solid #000;
+  margin: 0;
+  padding: 0.3em 1em;
+  text-align: center;
+  line-height: 1;
+  background: #EEE;
+  text-decoration: none;
+  font-size: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* 幅を割り当てるModifier */
+.btn--short {
+  width: 200px;
+}
+.btn--long {
+  width: 480px;
+}
+.btn--full {
+  width: 100%;
+}</code></pre>
+</div>
+</div>
+
+<div class="sample" id="icon">
+<h2 class="sample__heading">アイコンのサンプル</h2>
+<div class="sample__result">
+
+<p>CSSスプライトによるアイコン</p>
+<div>
+<span class="icn icn--edit"></span>
+<span class="icn icn--delete"></span>
+<span class="icn icn--nav-home"></span>
+</div>
+
+<p>アイコンフォントによるアイコン</p>
+<div>
+<span class="font-icon font-icon--edit"></span>
+<span class="font-icon font-icon--delete"></span>
+<span class="font-icon font-icon--home font-icon--large"></span>
+</div>
+
+</div>
+<div class="sample__markup">
+<h2 class="sample__heading">HTML</h2>
+<pre class="sample__code"><code class="html">&lt;!-- CSSスプライトによるアイコン --&gt;
+&lt;div&gt;
+&lt;span class=&quot;icn--edit icn--edit&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;icn--edit icn--delete&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;icn--edit icn--nav-home&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- アイコンフォントによるアイコン --&gt;
+&lt;div&gt;
+&lt;span class=&quot;font-icon font-icon--edit&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;font-icon font-icon--delete&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;font-icon font-icon--home font-icon--large&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="sample__css">
+<h2 class="sample__heading">CSS</h2>
+<pre class="sample__code"><code class="css">/* CSSスプライトによるアイコン */
+.icn {
+  display: inline-block;
+  background-image: url(spritesheets.png);
+}
+.icn--edit {
+  width: 16px;
+  height: 16px;
+  background-position: 0 -20px;
+}
+.icn--delete {
+  width: 16px;
+  height: 16px;
+  background-position: -20px -20px;
+}
+.icn--nav-home {
+  width: 32px;
+  height: 32px;
+  background-position: 0 0;
+}
+
+/* アイコンフォントによるアイコン */
+@font-face {
+  font-family: &#039;FontAwesome&#039;;
+  src: url(&#039;http://weloveiconfonts.com/api/fonts/fontawesome/fontawesome-webfont.eot&#039;);
+  src: url(&#039;http://weloveiconfonts.com/api/fonts/fontawesome/fontawesome-webfont.eot?#iefix&#039;) format(&#039;eot&#039;), 
+       url(&#039;http://weloveiconfonts.com/api/fonts/fontawesome/fontawesome-webfont.woff&#039;) format(&#039;woff&#039;), 
+       url(&#039;http://weloveiconfonts.com/api/fonts/fontawesome/fontawesome-webfont.ttf&#039;) format(&#039;truetype&#039;), 
+       url(&#039;http://weloveiconfonts.com/api/fonts/fontawesome/fontawesome-webfont.svg#FontAwesomeRegular&#039;) format(&#039;svg&#039;);
+}
+.font-icon:before {
+  line-height: 1;
+  font-family: &#039;FontAwesome&#039;, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-icon--edit:before {
+  content: &quot;\f044&quot;; /* 編集 */
+}
+.font-icon--delete:before {
+  content: &quot;\f014&quot;; /* 削除 */
+}
+.font-icon--home:before {
+  content: &quot;\f015&quot;; /* ホーム */
+}
+
+.font-icon--large {
+  font-size: 32px;
+}</code></pre>
+</div>
+</div>
+
+<div class="sample" id="heading">
+<h2 class="sample__heading">見出しのサンプル</h2>
+<div class="sample__result">
+
+<div class="heading">
+  <h2>見出し</h2>
+</div>
+
+<h2 class="heading">
+  見出し <a href="#link" class="heading__link">リンク</a>
+</h2>
+
+</div>
+<div class="sample__markup">
+<h2 class="sample__heading">HTML</h2>
+<pre class="sample__code"><code class="html">&lt;div class=&quot;heading&quot;&gt;
+  &lt;h2&gt;見出し&lt;/h2&gt;
+&lt;/div&gt;
+
+&lt;h2 class=&quot;heading&quot;&gt;
+  見出し &lt;a href=&quot;#link&quot; class=&quot;heading__link&quot;&gt;リンク&lt;/a&gt;
+&lt;/h2&gt;</code></pre>
+</div>
+<div class="sample__css">
+<h2 class="sample__heading">CSS</h2>
+<pre class="sample__code"><code class="css">.heading {
+  position: relative;
+  border: 1px solid #000;
+  margin-bottom: 0.5em;
+  line-height: 42px;
+  padding: 0 0.6em;
+  font-size: 20px;
+  font-weight: bold;
+}
+.heading__link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 1em;
+  font-size: 16px;
+  font-weight: normal;
+}</code></pre>
+</div>
+</div>
+
+<div class="sample" id="media">
+<h2 class="sample__heading">メディアのサンプル</h2>
+<div class="sample__result">
+
+<div class="media">
+  <div class="media__image">
+    <img src="http://placekitten.com/100/100" alt="sample">
+  </div>
+  <div class="media__body">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </div>
+</div>
+
+<div class="media">
+  <div class="media__image media__image--rev">
+    <img src="http://placekitten.com/100/100" alt="sample">
+  </div>
+  <div class="media__body">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </div>
+</div>
+
+</div>
+<div class="sample__markup">
+<h2 class="sample__heading">HTML</h2>
+<pre class="sample__code"><code class="html">&lt;div class=&quot;media&quot;&gt;
+  &lt;div class=&quot;media__image&quot;&gt;
+    &lt;img src=&quot;http://placekitten.com/100/100&quot; alt=&quot;sample&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;media__body&quot;&gt;
+    &lt;p&gt;...&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;media&quot;&gt;
+  &lt;div class=&quot;media__image media__image--rev&quot;&gt;
+    &lt;img src=&quot;http://placekitten.com/100/100&quot; alt=&quot;sample&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;media__body&quot;&gt;
+    &lt;p&gt;..,&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="sample__css">
+<h2 class="sample__heading">CSS</h2>
+<pre class="sample__code"><code class="css">.media:before,
+.media:after {
+  display: table; /* 子要素でfloatを使うため、Clearfixをする */
+  content: " "; /* 子要素でfloatを使うため、Clearfixをする */
+}
+
+.media:after {
+  clear: both; /* 子要素でfloatを使うため、Clearfixをする */
+}
+
+.media__image {
+  float: left;
+  margin-right: 10px; /* 任意の値 */
+}
+.media__image--rev { /* Reverse */
+  float: right;
+  margin-right: 0;
+  margin-left: 10px;
+}
+
+.media__image > img {
+  display: block;
+}
+
+.media__body {
+  overflow: hidden; /* 画像下にテキストが周り込むのを防ぐ */
+}</code></pre>
+</div>
+</div>
+
+<div class="sample" id="navigation">
+<h2 class="sample__heading">ナビゲーションのサンプル</h2>
+<div class="sample__result">
+
+<ul class="nav">
+  <li class="nav__item"><a href="#">Home</a></li>
+  <li class="nav__item"><a href="#">Service</a></li>
+  <li class="nav__item"><a href="#">About</a></li>
+  <li class="nav__item"><a href="#">Contact</a></li>
+</ul>
+
+<ul class="nav">
+  <li class="nav__item"><a href="#">Home</a></li>
+  <li class="nav__item"><a href="#">Service</a></li>
+  <li class="nav__item"><a href="#">About</a></li>
+  <li class="nav__item"><a href="#">IR</a></li>
+  <li class="nav__item"><a href="#">Contact</a></li>
+</ul>
+
+</div>
+<div class="sample__markup">
+<h2 class="sample__heading">HTML</h2>
+<pre class="sample__code"><code class="html">&lt;ul class=&quot;nav&quot;&gt;
+  &lt;li class=&quot;nav__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+  &lt;li class=&quot;nav__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Service&lt;/a&gt;&lt;/li&gt;
+  &lt;li class=&quot;nav__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+  &lt;li class=&quot;nav__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul class=&quot;nav&quot;&gt;
+  &lt;li class=&quot;nav__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+  &lt;li class=&quot;nav__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Service&lt;/a&gt;&lt;/li&gt;
+  &lt;li class=&quot;nav__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+  &lt;li class=&quot;nav__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;IR&lt;/a&gt;&lt;/li&gt;
+  &lt;li class=&quot;nav__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+</div>
+<div class="sample__css">
+<h2 class="sample__heading">CSS</h2>
+<pre class="sample__code"><code class="css">.nav {
+  display: table;
+  width: 100%;
+  table-layout: fixed; /* 子要素の`table-cell`の幅を均等にする */
+}
+.nav__item {
+  display: table-cell;
+}
+.nav__item > a {
+  display: block;
+  padding: 20px 0;
+  text-align: center;
+  text-decoration: none;
+  background-color: #49E;
+  font-weight: bold;
+  color: #FFF;
+}
+.nav__item > a:hover {
+  background-color: #6BF;
+}</code></pre>
+</div>
+</div>
+
+<div class="sample" id="list">
+<h2 class="sample__heading">リストのサンプル</h2>
+<div class="sample__result">
+
+<ul class="tableview">
+  <li class="tableview__item">リスト</li>
+  <li class="tableview__item">
+    <a href="#" class="tableview__target">
+    リンク
+    <span class="tableview__target-icon ico ico--arrow"></span>
+    </a>
+  </li>
+  <li class="tableview__item">
+    テキストの中に<a href="">インラインでリンク</a>が存在する場合
+  </li>
+</ul>
+
+</div>
+<div class="sample__markup">
+<h2 class="sample__heading">HTML</h2>
+<pre class="sample__code"><code class="html">&lt;ul class=&quot;tableview&quot;&gt;
+  &lt;li class=&quot;tableview__item&quot;&gt;リスト&lt;/li&gt;
+  &lt;li class=&quot;tableview__item&quot;&gt;
+    &lt;a href=&quot;#&quot; class=&quot;tableview__target&quot;&gt;
+    リンク
+    &lt;span class=&quot;tableview__target-icon ico ico--arrow&quot;&gt;&lt;/span&gt;
+    &lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;tableview__item&quot;&gt;
+    テキストの中に&lt;a href=&quot;&quot;&gt;インラインでリンク&lt;/a&gt;が存在する場合
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+</div>
+<div class="sample__css">
+<h2 class="sample__heading">CSS</h2>
+<pre class="sample__code"><code class="css">.tableview {
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid #999;
+}
+.tableview__item {
+  padding: 1em;
+  background-color: #DDD;
+}
+.tableview__item + .tableview__item {
+  border-top: 1px solid #666;
+}
+.tableview__target {
+  position: relative; /* 矢印の配置の基点にする */
+  padding-right: 2.4em; /* 矢印分の余白を空ける */
+  display: block; /* インラインからブロックに変える */
+  margin: -1em; /* paddingでふくらむ分を相殺する */
+  padding: 1em; /* 必要な余白を取る */
+  text-decoration: none; /* `<a>`のデフォルトスタイルを消す */
+  background-color: #DDF;
+  color: inherit;
+}
+.tableview__target:hover {
+  background-color: #E3E3FF;
+}
+.tableview__target-icon {
+  position: absolute;
+  top: 0; /* topとbottom、対するプロパティに値を持たせて、領域をつくる */
+  bottom: 0; /* topとbottom、対するプロパティに値を持たせる、領域をつくる */
+  right: 0.6em; /* アイコンが右端いっぱいに配置されないようにする */
+  margin: auto; /* 垂直に中央になるようにする */
+}
+
+.ico {
+  display: inline-block;
+  background-image: url(spritesheets.png);
+}
+.ico--arrow {
+  width: 16px;
+  height: 16px;
+  background-position: 0 -16px;
+}</code></pre>
+</div>
+</div>
+
+<div class="sample" id="grid">
+<h2 class="sample__heading">グリッドのサンプル</h2>
+<div class="sample__result">
+
+<div class="grid">
+  <div class="grid__item grid__item--3"><div>1</div></div>
+  <div class="grid__item grid__item--3"><div>2</div></div>
+  <div class="grid__item grid__item--3"><div>3</div></div>
+  <div class="grid__item grid__item--3"><div>4</div></div>
+</div>
+
+<div class="grid">
+  <div class="grid__item grid__item--4 has-gutter"><div>1</div></div>
+  <div class="grid__item grid__item--4 has-gutter"><div>2</div></div>
+  <div class="grid__item grid__item--4 has-gutter"><div>3</div></div>
+</div>
+
+<div class="grid grid--fill">
+  <div class="grid__item grid__item--4 has-gutter"><div>1</div></div>
+  <div class="grid__item grid__item--4 has-gutter"><div>2</div></div>
+  <div class="grid__item grid__item--4 has-gutter"><div>3</div></div>
+</div>
+
+</div>
+<div class="sample__markup">
+<h2 class="sample__heading">HTML</h2>
+<pre class="sample__code"><code class="html">&lt;div class=&quot;grid&quot;&gt;
+  &lt;div class=&quot;grid__item grid__item--3&quot;&gt;&lt;div&gt;1&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;grid__item grid__item--3&quot;&gt;&lt;div&gt;2&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;grid__item grid__item--3&quot;&gt;&lt;div&gt;3&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;grid__item grid__item--3&quot;&gt;&lt;div&gt;4&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;grid&quot;&gt;
+  &lt;div class=&quot;grid__item grid__item--4 has-gutter&quot;&gt;&lt;div&gt;1&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;grid__item grid__item--4 has-gutter&quot;&gt;&lt;div&gt;2&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;grid__item grid__item--4 has-gutter&quot;&gt;&lt;div&gt;3&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;grid grid--fill&quot;&gt;
+  &lt;div class=&quot;grid__item grid__item--4 has-gutter&quot;&gt;&lt;div&gt;1&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;grid__item grid__item--4 has-gutter&quot;&gt;&lt;div&gt;2&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;grid__item grid__item--4 has-gutter&quot;&gt;&lt;div&gt;3&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="sample__css">
+<h2 class="sample__heading">CSS</h2>
+<pre class="sample__code"><code class="css">.grid:before,
+.grid:after {
+  display: table; /* 子要素でfloatを使うため、Clearfixをする */
+  content: " "; /* 子要素でfloatを使うため、Clearfixをする */
+}
+.grid:after {
+  clear: both; /* 子要素でfloatを使うため、Clearfixをする */
+}
+
+.grid--fill {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+.grid__item {
+  float: left;
+  box-sizing: border-box; /* border-widthとpaddingをwidthに含める */
+  width: 16.667%;
+}
+.grid__item > div {
+  padding: 0.5em 1em;
+  background-color: rgba(44,88,99,0.5);
+  text-align: center;
+  font-weight: bold;
+  color: #FFF;
+}
+.grid__item--1 {
+  width: 8.333%;
+}
+.grid__item--2 {
+  width: 16.667%;
+}
+.grid__item--3 {
+  width: 25%;
+}
+.grid__item--4 {
+  width: 33.333%;
+}
+.grid__item--5 {
+  width: 41.666%;
+}
+.grid__item--6 {
+  width: 50%;
+}
+.grid__item--7 {
+  width: 58.333%;
+}
+.grid__item--8 {
+  width: 66.666%;
+}
+.grid__item--9 {
+  width: 75%;
+}
+.grid__item--10 {
+  width: 83.33%;
+}
+.grid__item--11 {
+  width: 91.666%;
+}
+.grid__item--12 {
+  width: 100%;
+}
+/* `.grid__item`に持たせる */
+.has-gutter {
+  padding-left: 5px;
+  padding-right: 5px;  
+}</code></pre>
+</div>
+</div>
+
+</body>
+</html>
