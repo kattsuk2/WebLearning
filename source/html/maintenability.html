@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>page layout</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+  <body>
+    <style>
+      li {
+        list-style: none;
+        width: 25%;
+      }
+      
+      @media (max-width: 999px) {
+        .pull-left {
+          float: none;
+        }
+
+        .width-30per {
+          width: 100%;
+        }
+
+        .width-70per {
+          width: 100%;
+        }
+        
+      }
+
+      @media (min-width: 1000px) {
+        .pull-left {
+          float: left;
+        }
+
+        .width-30per {
+          width: 30%;
+        }
+
+        .width-70per {
+          width: 70%;
+        }
+      }
+
+  </style>
+
+    <div class="container">
+      <div class="layout-box box1">
+        <p>BOX1</p>
+      </div>
+        <div class="clearfix">
+          <div class="layout-box box2 width-30per pull-left">
+            <ul>
+              <li><a href="#">NAV1</a></li>
+              <li><a href="#">NAV2</a></li>
+              <li><a href="#">NAV3</a></li>
+              <li><a href="#">NAV4</a></li>
+            </ul>
+          </div>
+          <div class="layout-box box3 width-70per pull-left">
+            <p>BOX3</p>
+          </div>
+        </div>
+      <div class="layout-box box4">
+        <p>BOX4</p>
+      </div>
+    </div>
+  </body>
+</html>

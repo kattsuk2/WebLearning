@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>page layout</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+  <body>
+    <style>
+      li {
+        list-style: none;
+        width: 25%;
+      }
+      
+      div#container {
+        width: 1000px;
+        margin: 0px auto;
+      }
+
+      div#box1 {
+        border: 5px solid #4286f4;
+        color: #4286f4;
+      }
+
+      div#box2 {
+        border: 5px solid #f4d742;
+        color: #f4d742;
+        width: 30%;
+        float: left;
+      }
+
+      div#box3 {
+        border: 5px solid #f44941;
+        color: #f44941;
+        width: 70%;
+        float: left;
+      }
+
+      div#box4 {
+        border: 5px solid #41f485;
+        color: #41f485;
+      }
+
+
+  </style>
+
+    <div id="container">
+      <div id="box1">
+        <p>BOX1</p>
+      </div>
+        <div class="clearfix">
+          <div id="box2">
+            <ul>
+              <li><a href="#">NAV1</a></li>
+              <li><a href="#">NAV2</a></li>
+              <li><a href="#">NAV3</a></li>
+              <li><a href="#">NAV4</a></li>
+            </ul>
+          </div>
+          <div id="box3">
+            <p>BOX3</p>
+          </div>
+        </div>
+      <div id="box4">
+        <p>BOX4</p>
+      </div>
+    </div>
+  </body>
+</html>

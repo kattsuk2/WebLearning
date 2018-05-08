@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>page layout</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+  <body>
+    <style>
+      li {
+        list-style: none;
+        width: 25%;
+      }
+      
+      .container {
+        width: 1000px;
+        margin: 0px auto;
+      }
+      
+      .container {
+        width: 1000px;
+        margin: 0px auto;
+      }
+
+      .layout-box {
+        border: 1px solid #333;
+        text-align: center;
+      }
+
+      .header {
+        border-width: 5px;
+        border-color:#4286f4;
+        color: #4286f4;
+      }
+
+      .nav {
+        border-width: 5px;
+        border-color: #f4d742;
+        color: #f4d742;
+      }
+
+      .main-content {
+        border-width: 5px;
+        border-color: #f44941;
+        color: #f44941;
+      }
+
+      .footer {
+        border-width: 5px;
+        border-color: #41f485;
+        color: #41f485;
+      }
+
+      .float-left {
+        float: left;
+      }
+
+      .float-right {
+        float: right;
+      }
+
+      .width-70per {
+        width: 70%;
+      }
+
+      .width-30per {
+        width: 30%;
+      }
+
+      .nav {
+        background-color: #f2f2f2;
+      }
+
+      .nav > li {
+        list-style: none;
+        border: 1px solid #ddd;
+      }
+
+      .nav > li > a {
+        display: inline-block;
+        height: 35px;
+        padding-top: 6px;
+      }
+  </style>
+
+    <div class="container">
+      <div class="layout-box header">
+        <p>BOX1</p>
+      </div>
+        <div class="clearfix">
+          <div class="layout-box nav float-left width-30per">
+            <ul>
+              <li><a href="#">NAV1</a></li>
+              <li><a href="#">NAV2</a></li>
+              <li><a href="#">NAV3</a></li>
+              <li><a href="#">NAV4</a></li>
+            </ul>
+          </div>
+          <div class="layout-box main-content float-left width-70per">
+            <p>BOX3</p>
+          </div>
+        </div>
+      <div class="layout-box footer">
+        <p>BOX4</p>
+      </div>
+    </div>
+  </body>
+</html>

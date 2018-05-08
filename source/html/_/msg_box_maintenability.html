@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>page layout</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+  <body>
+    <style>
+      li {
+        list-style: none;
+        width: 25%;
+      }
+      
+      div#container {
+        width: 1000px;
+        margin: 0px auto;
+      }
+
+      .message {
+        background-color: #79f8a9;
+        border: 5px solid #41f485;
+        color: #666;
+        margin: 10px;
+      }
+
+      .message-error {
+        background-color: #fc5f57;
+        border-color: #f44941;
+        color: white;
+      }
+
+      .message-warning {
+        background-color: #f8e16e;
+        border-color: #f4d742;
+      }
+
+      .message-success {
+        background-color: #6ea3f8;
+        border-color: #4286f4;
+        color: white;
+      }
+
+      a.btn {
+        text-decoration: none;
+        display: inline-block;
+        line-height: 1.2em;
+        background-color: #afafaf;
+        padding: 5px 10px;
+        color: white;
+      }
+
+      a.btn-medium {
+        padding: 5px 20px;
+      }
+
+      a.btn-large {
+        padding: 5px 40px;
+      }
+
+  </style>
+
+    <div id="container">
+      <div>
+        <div class="message message-error">Error Message</div>
+        <div class="message message-warning">Warging Message</div>
+        <div class="message message-success">Success Message</div>
+        <div class="message">Normal Message</div>
+      </div>
+      <div style="margin-top: 100px">
+          <a href="#" class="btn">button</a>
+          <a href="#" class="btn btn-medium">button</a>
+          <a href="#" class="btn btn-large">button</a>
+        </div>
+      </div>
+  </body>
+</html>

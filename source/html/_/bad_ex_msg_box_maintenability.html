@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>page layout</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+  <body>
+    <style>
+      li {
+        list-style: none;
+        width: 25%;
+      }
+      
+      div#container {
+        width: 1000px;
+        margin: 0px auto;
+      }
+
+      div#MessageBoxNormal {
+        background-color: #79f8a9;
+        border: 5px solid #41f485;
+        color: #666;
+        margin: 10px;
+      }
+
+      div#MessageBoxError {
+        background-color: #fc5f57;
+        border: 5px solid #f44941;
+        color: white;
+        margin: 10px;
+      }
+
+      div#MessageBoxWarning {
+        background-color: #f8e16e;
+        border: 5px solid #f4d742;
+        color: #666;
+        margin: 10px;
+      }
+
+      div#MessageBoxSuccess {
+        background-color: #6ea3f8;
+        border: 5px solid #4286f4;
+        color: white;
+        margin: 10px;
+      }
+
+      a.btn {
+        text-decoration: none;
+        display: inline-block;
+        line-height: 1.2em;
+        background-color: #afafaf;
+        padding: 5px 10px;
+        color: white;
+      }
+
+      a.btn-medium {
+        text-decoration: none;
+        display: inline-block;
+        line-height: 1.2em;
+        background-color: #afafaf;
+        padding: 5px 20px;
+        color: white;
+      }
+
+      a.btn-large {
+        text-decoration: none;
+        display: inline-block;
+        line-height: 1.2em;
+        background-color: #afafaf;
+        padding: 5px 40px;
+        color: white;
+      }
+
+  </style>
+
+    <div id="container">
+      <div>
+        <div id="MessageBoxNormal">Normal Message</div>
+        <div id="MessageBoxError">Error Message</div>
+        <div id="MessageBoxWarning">Warging Message</div>
+        <div id="MessageBoxSuccess">Success Message</div>
+      </div>
+      <div style="margin-top: 100px">
+          <a href="#" class="btn">button</a>
+          <a href="#" class="btn-medium">button</a>
+          <a href="#" class="btn-large">button</a>
+        </div>
+      </div>
+  </body>
+</html>
