@@ -1,0 +1,14 @@
+https://www.ajaxtower.jp/js/
+
+https://developer.mozilla.org/ja/docs/Web/JavaScript/A_re-introduction_to_JavaScript
+
+
+
+es6
+
+https://qiita.com/soarflat/items/b251caf9cb59b72beb9b
+
+
+
+browser
+http://kangax.github.io/compat-table/es6/
